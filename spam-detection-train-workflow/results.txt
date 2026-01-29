@@ -1,0 +1,55 @@
+ons\ms-python.debugpy-2025.18.0-win32-x64\bundled\libs\debugpy\launcher 57075 -- C:\hse\ml\spam-engine-train-workflow.py ./chase-lb-dataset
+
+[INFO] Итоговый датасет: 36746 строк.
+   -> Ham (0): 19092
+   -> Spam (1): 17654
+
+[INFO] Генерация эмбеддингов (SentenceTransformer)...
+Loading weights: 100%|██████████████████████████████| 103/103 [00:00<00:00, 1773.82it/s, Materializing param=pooler.dense.weight] 
+BertModel LOAD REPORT from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  |
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  |
+
+Notes:
+- UNEXPECTED    :can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+Batches: 100%|███████████████████████████████████████████████████████████████████████████████| 1149/1149 [12:54<00:00,  1.48it/s] 
+
+[INFO] Старт кросс-валидации (5 фолдов)...
+
+[INFO] Подбор порога для минимизации False Positives:
+Threshold  | Precision  | Recall     | F1         | FP Count
+-----------------------------------------------------------------
+0.50       | 0.9667     | 0.9728     | 0.9697     | 592
+0.55       | 0.9707     | 0.9690     | 0.9698     | 517
+0.60       | 0.9738     | 0.9638     | 0.9688     | 457
+0.65       | 0.9777     | 0.9570     | 0.9672     | 386
+0.70       | 0.9807     | 0.9509     | 0.9656     | 330
+0.75       | 0.9837     | 0.9418     | 0.9623     | 275
+0.80       | 0.9871     | 0.9294     | 0.9574     | 214
+0.85       | 0.9898     | 0.9106     | 0.9485     | 166
+0.90       | 0.9953     | 0.8553     | 0.9200     | 71
+0.95       | 0.9977     | 0.7782     | 0.8744     | 32
+
+[RESULT] Выбран оптимальный порог: 0.7000000000000002
+
+Отчет классификации:
+              precision    recall  f1-score   support
+
+         Ham       0.96      0.98      0.97     19092
+        Spam       0.98      0.95      0.97     17654
+
+    accuracy                           0.97     36746
+   macro avg       0.97      0.97      0.97     36746
+weighted avg       0.97      0.97      0.97     36746
+
+[INFO] Обучение финальной модели...
+c:\Users\serge\AppData\Local\Python\pythoncore-3.14-64\Lib\site-packages\xgboost\training.py:199: UserWarning: [22:08:50] WARNING: C:\actions-runner\_work\xgboost\xgboost\src\learner.cc:790:
+Parameters: { "use_label_encoder" } are not used.
+
+  bst.update(dtrain, iteration=i, fobj=obj)
+
+=== ПРОЦЕСС ЗАВЕРШЕН ===
+Модель готова. Используйте порог 0.7000000000000002 для классификации.
+Артефакты сохранены в папку 'model_artifacts/'
+PS C:\hse\ml> 
